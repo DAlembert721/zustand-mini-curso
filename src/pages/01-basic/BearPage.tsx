@@ -1,11 +1,9 @@
-import { BlackBears } from '../../components';
-import BearsDisplay from '../../components/01-basic/BearsDisplay';
-import { PandaBears } from '../../components/01-basic/PandaBears';
-import { PolarBears } from '../../components/01-basic/PolarBears';
-
+import { BlackBears } from "../../components";
+import BearsDisplay from "../../components/01-basic/BearsDisplay";
+import { PandaBears } from "../../components/01-basic/PandaBears";
+import { PolarBears } from "../../components/01-basic/PolarBears";
 
 export const BearPage = () => {
- 
   return (
     <>
       <h1>Contador de Osos</h1>
@@ -18,7 +16,6 @@ export const BearPage = () => {
         <PandaBears />
         <BearsDisplay />
       </div>
-
     </>
   );
 };

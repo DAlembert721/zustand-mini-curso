@@ -11,11 +11,13 @@ const BearsDisplay = () => {
     <WhiteCard>
       <h1>Osos</h1>
       <button onClick={doNothing}>Do Nothing</button>
-      <button className="mt-2" onClick={addBear}>Agregar oso</button>
-      <button className="mt-2" onClick={clearBears}>Borrar Oso</button>
-      <pre>
-        {JSON.stringify(bears, null, 2)}
-      </pre>
+      <button className="mt-2" onClick={addBear}>
+        Agregar oso
+      </button>
+      <button className="mt-2" onClick={clearBears}>
+        Borrar Oso
+      </button>
+      <pre>{JSON.stringify(bears, null, 2)}</pre>
     </WhiteCard>
   );
 };
