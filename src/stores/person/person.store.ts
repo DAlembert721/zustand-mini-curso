@@ -1,5 +1,6 @@
 import { create, type StateCreator } from "zustand";
-import { devtools, persist, type DevtoolsOptions } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
+import { getDevtoolsOptions } from "../generators/devtools-options.generator";
 import { logger } from "../middlewares/logger.middleware";
 import { firebaseStorage } from "../storages/firebase.storage";
 
@@ -24,11 +25,6 @@ const storeApi: StateCreator<
   setLastName: (lastName: string) => set({ lastName }, false, "setLastName"),
 });
 
-const options: DevtoolsOptions = {
-  enabled: import.meta.env.DEV,
-  store: "person-store",
-};
-
 export const usePersonStore = create<PersonState & Actions>()(
   logger(
     devtools(
@@ -36,7 +32,7 @@ export const usePersonStore = create<PersonState & Actions>()(
         name: "person-storage",
         storage: firebaseStorage,
       }),
-      options
+      getDevtoolsOptions("person-store")
     )
   )
 );
