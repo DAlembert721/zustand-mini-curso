@@ -1,5 +1,6 @@
 import { DragEvent, useState } from "react";
 import Swal from "sweetalert2";
+import { useShallow } from "zustand/react/shallow";
 import { TaskStatus } from "../interfaces";
 import { useTaskStore } from "../stores";
 
@@ -8,7 +9,9 @@ interface Options {
 }
 
 export const useTasks = ({ status }: Options) => {
-  const tasks = useTaskStore((state) => state.getTaskByStatus(status));
+  const tasks = useTaskStore(
+    useShallow((state) => state.getTaskByStatus(status))
+  );
   const isDragging = useTaskStore((state) => !!state.draggingTaskId);
   const addTask = useTaskStore((state) => state.addTask);
   const onTaskDrop = useTaskStore((state) => state.onTaskDrop);
