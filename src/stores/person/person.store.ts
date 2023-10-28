@@ -2,7 +2,7 @@ import { create, type StateCreator } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { getDevtoolsOptions } from "../generators/devtools-options.generator";
 import { logger } from "../middlewares/logger.middleware";
-import { firebaseStorage } from "../storages/firebase.storage";
+import { useWeedingBoundStore } from "../wedding";
 
 interface PersonState {
   firstName: string;
@@ -30,9 +30,15 @@ export const usePersonStore = create<PersonState & Actions>()(
     devtools(
       persist(storeApi, {
         name: "person-storage",
-        storage: firebaseStorage,
+        // storage: firebaseStorage,
       }),
       getDevtoolsOptions("person-store")
     )
   )
 );
+
+usePersonStore.subscribe((nextState) => {
+  const { firstName, lastName } = nextState;
+  useWeedingBoundStore.getState().setFirstName(firstName);
+  useWeedingBoundStore.getState().setLastName(lastName);
+});
