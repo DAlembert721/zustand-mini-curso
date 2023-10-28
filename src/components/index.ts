@@ -1,3 +1,5 @@
+export * from "./shared/RequestInfo";
+
 export * from "./jira/JiraTasks";
 
 export * from "./01-basic/BlackBears";
